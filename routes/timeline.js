@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 router.post("/new",  upload.single('image'), create);
 router.get("/getAll", getAll);
-router.get("/yearDetail",getmyPost)
+router.get("/yearDetail/:id",getmyPost)
 router.route('/post/:id')
   .put(updateTask)
   .delete(deletepost);
