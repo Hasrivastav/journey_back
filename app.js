@@ -7,11 +7,14 @@ import cors from "cors";
 
 export const app = express();
 
+
+
 config({
   path: "./data/config.env",
 });
 
 // Using Middlewares
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -22,15 +25,9 @@ app.use(
   })
 );
 
-// const storage = multer.diskStorage({
-//     destination: './uploads', // Set the directory where uploaded files will be stored
-//     filename: (req, file, cb) => {
-//       cb(null, Date.now() + '-' + file.originalname); // Rename the uploaded file to avoid naming conflicts
-//     }
-//   });
 
-// export const upload = multer({ storage });
 
+app.use('/uploads', express.static(''));
 app.use("/api/v1/timeline", timlineRouter);
 
 
