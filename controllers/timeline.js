@@ -57,6 +57,22 @@ export const create =  async (req, res) => {
       res.status(500).json({ error: 'Failed to update post' });
     }
   };
+
+export const getmyPost = async (req, res) => {
+  try {
+    // const year_id = req.params.id;
+
+    const post = await PostModel.findById(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      post,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
    export const deletepost = async (req, res) => {
     try {
       const post = await PostModel.findById(req.params.id);

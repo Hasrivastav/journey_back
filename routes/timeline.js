@@ -1,5 +1,5 @@
 import express from "express";
-import { create,deletepost,getAll,updateTask } from "../controllers/timeline.js";
+import { create,deletepost,getAll,getmyPost,updateTask } from "../controllers/timeline.js";
 import multer from 'multer';
 
 const router = express.Router();
@@ -17,6 +17,7 @@ const storage = multer.diskStorage({
 
 router.post("/new",  upload.single('image'), create);
 router.get("/getAll", getAll);
+router.get("/yearDetail",getmyPost)
 router.route('/post/:id')
   .put(updateTask)
   .delete(deletepost);
