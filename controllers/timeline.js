@@ -59,10 +59,12 @@ export const create =  async (req, res) => {
   };
    export const deletepost = async (req, res) => {
     try {
-      const post = await PostModel.findByIdAndDelete(req.params.id);
+      const post = await PostModel.findById(req.params.id);
       if (!post) {
         return res.status(404).json({ error: 'Post not found' });
       }
+      await task.deleteOne();
+      
       res.status(200).json({ message: 'Post deleted successfully' });
     } catch (error) {
       console.error('Error deleting post:', error);
