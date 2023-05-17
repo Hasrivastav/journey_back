@@ -3,11 +3,14 @@ import timlineRouter from "./routes/timeline.js";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path"; 
 
 
 export const app = express();
 
+const rootPath = path.resolve(); // Get the root path of your project
 
+app.use('/uploads', express.static(path.join(rootPath, 'uploads')));
 
 config({
   path: "./data/config.env",
@@ -27,7 +30,7 @@ app.use(
 
 
 
-app.use('/uploads', express.static(''));
+// app.use('/uploads', express.static(''));
 app.use("/api/v1/timeline", timlineRouter);
 
 

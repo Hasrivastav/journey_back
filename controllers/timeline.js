@@ -1,26 +1,26 @@
 import {PostModel} from '../models/timeline.js'
 
 
-export const create =  async (req, res) => {
-    try {
-      const { title, description, year } = req.body;
-      const { filename, path } = req.file;
+// export const create =  async (req, res) => {
+//     try {
+//       const { title, description, year } = req.body;
+//       const { filename, path } = req.file;
   
-      const post = new PostModel({
-        image: path,
-        title,
-        description,
-        year
-      });
+//       const post = new PostModel({
+//         image: path,
+//         title,
+//         description,
+//         year
+//       });
   
-      await post.save();
+//       await post.save();
   
-      res.status(200).json({ message: 'Post created successfully' });
-    } catch (error) {
-      console.error('Error creating post:', error);
-      res.status(500).json({ error: 'Failed to create post' });
-    }
-  };
+//       res.status(200).json({ message: 'Post created successfully' });
+//     } catch (error) {
+//       console.error('Error creating post:', error);
+//       res.status(500).json({ error: 'Failed to create post' });
+//     }
+//   };
   
   // Get all posts
   export const getAll= async (req, res) => {

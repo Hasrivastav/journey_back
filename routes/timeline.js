@@ -1,7 +1,7 @@
 import express from "express";
-import { create,deletepost,getAll,getmyPost,updateTask } from "../controllers/timeline.js";
+import { deletepost,getAll,getmyPost,updateTask } from "../controllers/timeline.js";
 import multer from 'multer';
-
+import { PostModel } from "../models/timeline.js";
 const router = express.Router();
 
 
@@ -15,7 +15,28 @@ const storage = multer.diskStorage({
   const upload = multer({ storage });
 
 
-router.post("/new",  upload.single('image'), create);
+  router.post("/new", upload.single('image'), async (req, res) => {
+    try {
+      const { title, description, year } = req.body;
+      const image = req.file.path;
+  
+      // Create a new post
+      const post = new PostModel({
+        image,
+        title,
+        description,
+        year
+      });
+  
+      // Save the post to the database
+      await post.save();
+  
+      res.status(201).json(post);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to create a new post" });
+    }
+  });
+
 router.get("/getAll", getAll);
 router.get("/yearDetail/:id",getmyPost)
 router.route('/post/:id')
