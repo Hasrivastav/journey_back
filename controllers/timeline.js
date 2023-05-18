@@ -91,27 +91,27 @@ export const getmyPost = async (req, res) => {
   export const updateMyPost = async (req, res) => {
     try {
       const postId = req.params.id;
-      const { image, title, description, year } = req.body;
-
-      // Find the post by ID
-      const post = await PostModel.findById(postId);
-
+      const { title, description, year } = req.body;
+  
+      // Find the post by ID in the database
+      const post = await Post.findById(postId);
+  
       if (!post) {
         return res.status(404).json({ message: 'Post not found' });
       }
-
+  
       // Update the post fields
-      post.image = image;
       post.title = title;
       post.description = description;
       post.year = year;
-
+  
       // Save the updated post
-      await post.save();
-
-      return res.status(200).json({ message: 'Post updated successfully', post });
+      const updatedPost = await post.save();
+  
+      res.json(updatedPost);
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ message: 'Internal server error' });
+      res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
+  
