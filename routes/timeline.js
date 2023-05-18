@@ -3,6 +3,7 @@ import {updateMyPost, deletepost,getAll,getmyPost,updateTask } from "../controll
 import multer from 'multer';
 import { PostModel } from "../models/timeline.js";
 const router = express.Router();
+import path from "path";
 
 
 const uploadDir = path.join(__dirname, 'uploads');
