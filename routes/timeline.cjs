@@ -6,7 +6,7 @@ import path from "path";
 const router = express.Router();
 
 
-const uploadDir = path.join(__dirname, 'uploads');
+const uploadDir = path.join(path.dirname(new URL(import.meta.url).pathname), 'uploads');
 
 // Create the multer storage configuration
 const storage = multer.diskStorage({
