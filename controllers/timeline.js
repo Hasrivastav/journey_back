@@ -94,7 +94,7 @@ export const getmyPost = async (req, res) => {
       const { title, description, year } = req.body;
   
       // Find the post by ID in the database
-      const post = await Post.findById(postId);
+      const post = await PostModel.findById(postId);
   
       if (!post) {
         return res.status(404).json({ message: 'Post not found' });
