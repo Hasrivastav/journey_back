@@ -4,8 +4,6 @@ import multer from 'multer';
 import { PostModel } from "../models/timeline.js";
 const router = express.Router();
 
-// import { fileURLToPath } from 'url';
-// import path, { dirname } from 'path';
 const uploadDir = path.join(__dirname, 'uploads');
 
 // Create the multer storage configuration
@@ -18,10 +16,9 @@ const storage = multer.diskStorage({
   }
 });
 
-
-
-// Create the multer instance
+// Create the multer upload instance
 const upload = multer({ storage });
+
 
 
 

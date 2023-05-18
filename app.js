@@ -8,9 +8,9 @@ import path from "path";
 
 export const app = express();
 
-const rootPath = path.resolve(); // Get the root path of your project
+// const rootPath = path.resolve(); // Get the root path of your project
 
-app.use('/uploads', express.static(path.join(rootPath, 'uploads')));
+// app.use('/uploads', express.static(path.join(rootPath, 'uploads')));
 
 config({
   path: "./data/config.env",
