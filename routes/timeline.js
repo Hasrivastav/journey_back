@@ -2,13 +2,10 @@ import express from "express";
 import { updateMyPost, deletepost, getAll, getmyPost, updateTask } from "../controllers/timeline.js";
 import multer from 'multer';
 import { PostModel } from "../models/timeline.js";
+const router = express.Router();
 
-import { fileURLToPath } from 'url';
-import path, { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+// import { fileURLToPath } from 'url';
+// import path, { dirname } from 'path';
 const uploadDir = path.join(__dirname, 'uploads');
 
 // Create the multer storage configuration
@@ -26,9 +23,9 @@ const storage = multer.diskStorage({
 // Create the multer instance
 const upload = multer({ storage });
 
-const router = express.Router();
 
-router.post("/new", upload.single('image'), async (req, res) => {
+
+router.post("/upload", upload.single('image'), async (req, res) => {
   try {
     const { title, description, year } = req.body;
     const image = req.file.path;
