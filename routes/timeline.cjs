@@ -1,28 +1,24 @@
-import express from "express";
-import { updateMyPost, deletepost, getAll, getmyPost, updateTask } from "../controllers/timeline.js";
-import multer from 'multer';
-import { PostModel } from "../models/timeline.js";
-import path from "path";
+const express = require("express");
+const { updateMyPost, deletepost, getAll, getmyPost, updateTask } = require("../controllers/timeline.js");
+const multer = require('multer');
+const { PostModel } = require("../models/timeline.js");
+const path = require("path");
 const router = express.Router();
 
-
-const uploadDir = path.join(path.dirname(new URL(import.meta.url).pathname), 'uploads');
+const uploadDir = path.join(__dirname, 'uploads');
 
 // Create the multer storage configuration
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: function (req, file, cb) {
     cb(null, uploadDir); // Set the destination folder for file uploads
   },
-  filename: (req, file, cb) => {
+  filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); // Generate a unique file name
   }
 });
 
 // Create the multer upload instance
 const upload = multer({ storage });
-
-
-
 
 router.post("/upload", upload.single('image'), async (req, res) => {
   try {
@@ -52,4 +48,4 @@ router.route('/post/:id')
   .put(updateMyPost)
   .delete(deletepost);
 
-export default router;
+module.exports = router;
