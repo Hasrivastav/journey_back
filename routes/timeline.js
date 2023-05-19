@@ -14,6 +14,7 @@ const router = express.Router();
 const uploadDir = path.join(__dirname, 'uploads');
 
 // Create the multer storage configuration
+console.log("Upload directory:", uploadDir);
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadDir); // Set the destination folder for file uploads
@@ -26,7 +27,7 @@ const storage = multer.diskStorage({
 // Create the multer upload instance
 const upload = multer({ storage });
 
-router.post("/upload", upload.single('image'), async (req, res) => {
+router.post("/new", upload.single('image'), async (req, res) => {
   try {
     const { title, description, year } = req.body;
     const image = req.file.path;
