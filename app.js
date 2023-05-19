@@ -1,5 +1,5 @@
 import express from "express";
-import timlineRouter from "./routes/timeline.cjs";
+import timlineRouter from "./routes/timeline.js";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
