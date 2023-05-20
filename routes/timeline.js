@@ -1,5 +1,5 @@
 import express from "express";
-import { updateMyPost, deletepost, getAll, getmyPost  } from "../controllers/timeline.js";
+import { updateMyPost, deletepost, getAll, getmyPost ,updateLikeStatus } from "../controllers/timeline.js";
 import multer from 'multer';
 import { PostModel } from "../models/timeline.js";
 import path from "path";
