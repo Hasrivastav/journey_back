@@ -74,7 +74,7 @@ export const deletepost = async (req, res) => {
 };
 
 
-import { PostModel } from '../models/timeline.js';
+
 
 // Update the liked value of a post
 export const updateLikeStatus = async (req, res) => {
