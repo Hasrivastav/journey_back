@@ -65,4 +65,6 @@ router.route('/post/:id')
   .put(updateMyPost)
   .delete(deletepost);
 
+router.put('/post/:id/like', updateLikeStatus);
+
 export default router;

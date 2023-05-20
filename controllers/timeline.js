@@ -72,3 +72,32 @@ export const deletepost = async (req, res) => {
     res.status(500).json({ error: 'Failed to delete post' });
   }
 };
+
+
+import { PostModel } from '../models/timeline.js';
+
+// Update the liked value of a post
+export const updateLikeStatus = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const { liked } = req.body;
+
+    // Find the post by ID
+    const post = await PostModel.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    // Update the liked value
+    post.liked = liked;
+
+    // Save the updated post
+    await post.save();
+
+    res.status(200).json({ message: 'Like status updated successfully' });
+  } catch (error) {
+    console.error('Error updating like status:', error);
+    res.status(500).json({ error: 'Failed to update like status' });
+  }
+};
